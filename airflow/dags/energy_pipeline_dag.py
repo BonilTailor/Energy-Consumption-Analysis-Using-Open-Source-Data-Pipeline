@@ -1,16 +1,12 @@
-# ============================================================
 # Airflow DAG
-# Energy Consumption Optimization Pipeline
-# ============================================================
+# Energy Consumption Analysis Pipeline
 
 from datetime import datetime, timedelta
 
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 
-# ============================================================
 # DAG Default Arguments
-# ============================================================
 
 default_args = {
     "owner": "data-engineering-team",
@@ -21,9 +17,7 @@ default_args = {
     "retry_delay": timedelta(minutes=5),
 }
 
-# ============================================================
 # DAG Definition
-# ============================================================
 
 with DAG(
     dag_id="energy_consumption_pipeline",
@@ -41,10 +35,9 @@ with DAG(
     ]
 ) as dag:
 
-    # ========================================================
+    
     # Extract Task
-    # ========================================================
-
+    
     extract_data = BashOperator(
         task_id="extract_data",
         bash_command=(
@@ -52,10 +45,9 @@ with DAG(
         ),
     )
 
-    # ========================================================
+    
     # Transform Task
-    # ========================================================
-
+    
     transform_data = BashOperator(
         task_id="transform_data",
         bash_command=(
@@ -63,9 +55,9 @@ with DAG(
         ),
     )
 
-    # ========================================================
+    
     # Feature Engineering Task
-    # ========================================================
+    
 
     feature_engineering = BashOperator(
         task_id="feature_engineering",
@@ -75,9 +67,9 @@ with DAG(
         ),
     )
 
-    # ========================================================
+    
     # Clustering Task
-    # ========================================================
+    
 
     clustering_analysis = BashOperator(
         task_id="clustering_analysis",
@@ -86,9 +78,9 @@ with DAG(
         ),
     )
 
-    # ========================================================
+    
     # Anomaly Detection Task
-    # ========================================================
+    
 
     anomaly_detection = BashOperator(
         task_id="anomaly_detection",
@@ -98,9 +90,9 @@ with DAG(
         ),
     )
 
-    # ========================================================
+    
     # Load to BigQuery
-    # ========================================================
+    
 
     load_bigquery = BashOperator(
         task_id="load_bigquery",
@@ -110,9 +102,9 @@ with DAG(
         ),
     )
 
-    # ========================================================
+    
     # Pipeline Dependencies
-    # ========================================================
+    
 
     (
         extract_data
