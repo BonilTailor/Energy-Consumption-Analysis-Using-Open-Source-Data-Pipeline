@@ -1,6 +1,4 @@
--- ============================================================
 -- Household Daily Energy Usage Aggregation
--- ============================================================
 
 CREATE OR REPLACE TABLE
   `energy_analytics.household_daily_usage`
