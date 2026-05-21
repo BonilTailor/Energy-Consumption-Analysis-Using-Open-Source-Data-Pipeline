@@ -1,29 +1,10 @@
-"""
-transform.py
-
-Data transformation pipeline for London smart meter dataset.
-
-Tasks:
-- Clean missing values
-- Standardize timestamps
-- Remove duplicates
-- Handle outliers
-- Aggregate household usage
-- Generate processed dataset
-
-Author: Your Name
-Project: Energy Consumption Optimization
-"""
-
 import logging
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-# -----------------------------------------------------------------------------
 # CONFIG
-# -----------------------------------------------------------------------------
 
 RAW_DATA_PATH = Path("data/raw/extracted")
 PROCESSED_DATA_PATH = Path("data/processed")
@@ -32,9 +13,7 @@ PROCESSED_DATA_PATH.mkdir(parents=True, exist_ok=True)
 
 OUTPUT_FILE = PROCESSED_DATA_PATH / "cleaned_energy_data.csv"
 
-# -----------------------------------------------------------------------------
 # LOGGING
-# -----------------------------------------------------------------------------
 
 logging.basicConfig(
     level=logging.INFO,
@@ -43,10 +22,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-# -----------------------------------------------------------------------------
 # LOAD DATA
-# -----------------------------------------------------------------------------
-
 
 def load_raw_data() -> pd.DataFrame:
 
@@ -103,11 +79,7 @@ def load_raw_data() -> pd.DataFrame:
 
     return combined_df
 
-
-# -----------------------------------------------------------------------------
 # CLEAN COLUMN NAMES
-# -----------------------------------------------------------------------------
-
 
 def clean_column_names(df: pd.DataFrame) -> pd.DataFrame:
 
@@ -120,11 +92,7 @@ def clean_column_names(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # HANDLE MISSING VALUES
-# -----------------------------------------------------------------------------
-
 
 def handle_missing_values(df: pd.DataFrame) -> pd.DataFrame:
 
@@ -144,11 +112,7 @@ def handle_missing_values(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # STANDARDIZE DATETIME
-# -----------------------------------------------------------------------------
-
 
 def standardize_datetime(df: pd.DataFrame) -> pd.DataFrame:
 
@@ -179,11 +143,7 @@ def standardize_datetime(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # REMOVE DUPLICATES
-# -----------------------------------------------------------------------------
-
 
 def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
 
@@ -199,20 +159,13 @@ def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # REMOVE OUTLIERS
-# -----------------------------------------------------------------------------
-
 
 def remove_outliers(
     df: pd.DataFrame,
     column: str
 ) -> pd.DataFrame:
-    """
-    Remove outliers using IQR method.
-    """
-
+    
     if column not in df.columns:
         return df
 
@@ -237,11 +190,7 @@ def remove_outliers(
 
     return filtered_df
 
-
-# -----------------------------------------------------------------------------
 # FEATURE ENGINEERING
-# -----------------------------------------------------------------------------
-
 
 def create_energy_features(df: pd.DataFrame) -> pd.DataFrame:
 
@@ -274,10 +223,7 @@ def create_energy_features(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # AGGREGATE HOUSEHOLD METRICS
-# -----------------------------------------------------------------------------
 
 
 def aggregate_household_metrics(
@@ -336,11 +282,7 @@ def aggregate_household_metrics(
 
     return agg_df
 
-
-# -----------------------------------------------------------------------------
 # SAVE DATA
-# -----------------------------------------------------------------------------
-
 
 def save_processed_data(df: pd.DataFrame):
 
@@ -367,10 +309,7 @@ def filter_invalid_consumption(df, consumption_column):
 
     return df
 
-# -----------------------------------------------------------------------------
 # MAIN
-# -----------------------------------------------------------------------------
-
 
 def main():
 
