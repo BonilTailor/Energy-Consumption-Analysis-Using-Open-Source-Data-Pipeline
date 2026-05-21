@@ -1,19 +1,3 @@
-"""
-clustering.py
-
-Customer segmentation for London smart meter households
-using KMeans clustering.
-
-Features:
-- Household consumption segmentation
-- Peak usage behavior analysis
-- Consumption profiling
-- Dashboard-ready cluster outputs
-
-Author: Your Name
-Project: Energy Consumption Optimization
-"""
-
 import logging
 from pathlib import Path
 
@@ -23,9 +7,7 @@ import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
-# -----------------------------------------------------------------------------
 # CONFIG
-# -----------------------------------------------------------------------------
 
 INPUT_FILE = (
     Path("data/processed/household_metrics.csv")
@@ -47,9 +29,7 @@ PLOT_FILE = (
     OUTPUT_DIR / "cluster_visualization.png"
 )
 
-# -----------------------------------------------------------------------------
 # LOGGING
-# -----------------------------------------------------------------------------
 
 logging.basicConfig(
     level=logging.INFO,
@@ -58,16 +38,9 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-# -----------------------------------------------------------------------------
 # LOAD DATA
-# -----------------------------------------------------------------------------
-
 
 def load_household_metrics() -> pd.DataFrame:
-    """
-    Load household-level aggregated metrics.
-    """
-
     logger.info("Loading household metrics dataset...")
 
     if not INPUT_FILE.exists():
@@ -81,17 +54,9 @@ def load_household_metrics() -> pd.DataFrame:
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # PREPARE FEATURES
-# -----------------------------------------------------------------------------
-
 
 def prepare_features(df: pd.DataFrame):
-    """
-    Select numerical features for clustering.
-    """
-
     logger.info("Preparing clustering features...")
 
     feature_columns = [
@@ -123,19 +88,12 @@ def prepare_features(df: pd.DataFrame):
 
     return X_scaled, feature_columns
 
-
-# -----------------------------------------------------------------------------
 # TRAIN KMEANS MODEL
-# -----------------------------------------------------------------------------
-
 
 def train_kmeans(
     X_scaled,
     n_clusters=4
 ):
-    """
-    Train KMeans clustering model.
-    """
 
     logger.info(
         f"Training KMeans with {n_clusters} clusters..."
@@ -153,20 +111,13 @@ def train_kmeans(
 
     return model
 
-
-# -----------------------------------------------------------------------------
 # ASSIGN CLUSTERS
-# -----------------------------------------------------------------------------
-
 
 def assign_clusters(
     dataframe,
     model,
     X_scaled
 ):
-    """
-    Assign cluster labels.
-    """
 
     logger.info("Assigning household clusters...")
 
@@ -187,19 +138,12 @@ def assign_clusters(
 
     return dataframe
 
-
-# -----------------------------------------------------------------------------
 # SAVE OUTPUTS
-# -----------------------------------------------------------------------------
-
 
 def save_outputs(
     dataframe,
     model
 ):
-    """
-    Save clustering results and model.
-    """
 
     logger.info("Saving clustering outputs...")
 
@@ -218,16 +162,9 @@ def save_outputs(
         f"Model artifact saved: {MODEL_FILE}"
     )
 
-
-# -----------------------------------------------------------------------------
 # CLUSTER VISUALIZATION
-# -----------------------------------------------------------------------------
-
 
 def create_cluster_plot(dataframe):
-    """
-    Create 2D cluster visualization.
-    """
 
     logger.info("Creating cluster visualization...")
 
@@ -263,16 +200,9 @@ def create_cluster_plot(dataframe):
         f"Cluster visualization saved: {PLOT_FILE}"
     )
 
-
-# -----------------------------------------------------------------------------
 # GENERATE CLUSTER SUMMARY
-# -----------------------------------------------------------------------------
-
 
 def generate_cluster_summary(df):
-    """
-    Generate summary statistics for clusters.
-    """
 
     logger.info("Generating cluster summary...")
 
@@ -296,10 +226,7 @@ def generate_cluster_summary(df):
         f"Cluster summary saved: {summary_file}"
     )
 
-
-# -----------------------------------------------------------------------------
 # MAIN
-# -----------------------------------------------------------------------------
 
 
 def main():
