@@ -1,16 +1,11 @@
 version: '3.8'
 
-# ============================================================
 # Energy Consumption Optimization Platform
 # Docker Compose Configuration
-# ============================================================
 
 services:
 
-  # ==========================================================
   # PostgreSQL Database
-  # ==========================================================
-
   postgres:
     image: postgres:15
     container_name: energy_postgres
@@ -31,9 +26,7 @@ services:
       interval: 10s
       retries: 5
 
-  # ==========================================================
   # Airflow Webserver
-  # ==========================================================
 
   airflow-webserver:
     image: apache/airflow:2.9.1
@@ -63,10 +56,8 @@ services:
       - ./logs:/opt/airflow/logs
       - ./requirements.txt:/requirements.txt
 
-  # ==========================================================
   # Airflow Scheduler
-  # ==========================================================
-
+  
   airflow-scheduler:
     image: apache/airflow:2.9.1
 
@@ -91,9 +82,7 @@ services:
       - ./logs:/opt/airflow/logs
       - ./requirements.txt:/requirements.txt
 
-  # ==========================================================
   # Jupyter Notebook Environment
-  # ==========================================================
 
   jupyter:
     image: jupyter/pyspark-notebook:latest
@@ -109,10 +98,8 @@ services:
     environment:
       JUPYTER_ENABLE_LAB: "yes"
 
-  # ==========================================================
   # Streamlit Dashboard
-  # ==========================================================
-
+  
   streamlit:
     image: python:3.11-slim
 
@@ -135,9 +122,7 @@ services:
     depends_on:
       - airflow-webserver
 
-# ============================================================
 # Volumes
-# ============================================================
 
 volumes:
   postgres_data:
