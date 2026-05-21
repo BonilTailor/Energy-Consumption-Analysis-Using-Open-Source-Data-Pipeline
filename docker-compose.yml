@@ -1,0 +1,143 @@
+version: '3.8'
+
+# ============================================================
+# Energy Consumption Optimization Platform
+# Docker Compose Configuration
+# ============================================================
+
+services:
+
+  # ==========================================================
+  # PostgreSQL Database
+  # ==========================================================
+
+  postgres:
+    image: postgres:15
+    container_name: energy_postgres
+
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      retries: 5
+
+  # ==========================================================
+  # Airflow Webserver
+  # ==========================================================
+
+  airflow-webserver:
+    image: apache/airflow:2.9.1
+
+    container_name: airflow_webserver
+
+    depends_on:
+      - postgres
+
+    restart: always
+
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "True"
+
+    ports:
+      - "8080:8080"
+
+    command: webserver
+
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./src:/opt/airflow/src
+      - ./data:/opt/airflow/data
+      - ./logs:/opt/airflow/logs
+      - ./requirements.txt:/requirements.txt
+
+  # ==========================================================
+  # Airflow Scheduler
+  # ==========================================================
+
+  airflow-scheduler:
+    image: apache/airflow:2.9.1
+
+    container_name: airflow_scheduler
+
+    depends_on:
+      - airflow-webserver
+
+    restart: always
+
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+
+    command: scheduler
+
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./src:/opt/airflow/src
+      - ./data:/opt/airflow/data
+      - ./logs:/opt/airflow/logs
+      - ./requirements.txt:/requirements.txt
+
+  # ==========================================================
+  # Jupyter Notebook Environment
+  # ==========================================================
+
+  jupyter:
+    image: jupyter/pyspark-notebook:latest
+
+    container_name: energy_jupyter
+
+    ports:
+      - "8888:8888"
+
+    volumes:
+      - ./:/home/jovyan/work
+
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+
+  # ==========================================================
+  # Streamlit Dashboard
+  # ==========================================================
+
+  streamlit:
+    image: python:3.11-slim
+
+    container_name: energy_streamlit
+
+    working_dir: /app
+
+    command: >
+      bash -c "
+      pip install -r requirements.txt &&
+      streamlit run dashboard/app.py
+      "
+
+    ports:
+      - "8501:8501"
+
+    volumes:
+      - ./:/app
+
+    depends_on:
+      - airflow-webserver
+
+# ============================================================
+# Volumes
+# ============================================================
+
+volumes:
+  postgres_data:
