@@ -1,13 +1,3 @@
-"""
-extract.py
-
-Extract smart meter energy consumption data from:
-https://data.london.gov.uk/dataset/smartmeter-energy-use-data-in-london-households
-
-Author: Your Name
-Project: Energy Consumption Optimization
-"""
-
 import os
 import logging
 import zipfile
@@ -17,14 +7,10 @@ import pandas as pd
 import requests
 from tqdm import tqdm
 
-# -----------------------------------------------------------------------------
 # CONFIG
-# -----------------------------------------------------------------------------
 
 DATA_URL = (
-    "https://data.london.gov.uk/download/smartmeter-energy-use-data-in-"
-    "london-households/10d04d57-5d4c-4b69-b6f2-4f8c9c6e8d5b/"
-    "smartmeter.zip"
+    "https://data.london.gov.uk/download/smartmeter-energy-use-data-in-london-households/10d04d57-5d4c-4b69-b6f2-4f8c9c6e8d5b/smartmeter.zip"
 )
 
 RAW_DATA_DIR = Path("data/raw")
@@ -35,9 +21,7 @@ EXTRACT_DIR.mkdir(parents=True, exist_ok=True)
 
 ZIP_FILE_PATH = RAW_DATA_DIR / "smartmeter.zip"
 
-# -----------------------------------------------------------------------------
 # LOGGING
-# -----------------------------------------------------------------------------
 
 logging.basicConfig(
     level=logging.INFO,
@@ -46,15 +30,9 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-# -----------------------------------------------------------------------------
 # DOWNLOAD DATASET
-# -----------------------------------------------------------------------------
-
 
 def download_file(url: str, output_path: Path):
-    """
-    Download dataset with progress bar.
-    """
 
     logger.info("Starting dataset download...")
 
@@ -78,16 +56,9 @@ def download_file(url: str, output_path: Path):
 
     logger.info(f"Dataset downloaded to: {output_path}")
 
-
-# -----------------------------------------------------------------------------
 # EXTRACT ZIP
-# -----------------------------------------------------------------------------
-
 
 def extract_zip(zip_path: Path, extract_to: Path):
-    """
-    Extract zip dataset.
-    """
 
     logger.info("Extracting dataset...")
 
@@ -96,16 +67,9 @@ def extract_zip(zip_path: Path, extract_to: Path):
 
     logger.info(f"Files extracted to: {extract_to}")
 
-
-# -----------------------------------------------------------------------------
 # VALIDATE FILES
-# -----------------------------------------------------------------------------
-
 
 def validate_extraction(directory: Path):
-    """
-    Validate extracted files exist.
-    """
 
     csv_files = list(directory.rglob("*.csv"))
 
@@ -116,16 +80,9 @@ def validate_extraction(directory: Path):
 
     logger.info(f"Found {len(csv_files)} CSV files.")
 
-
-# -----------------------------------------------------------------------------
 # SAMPLE PREVIEW
-# -----------------------------------------------------------------------------
-
 
 def preview_data(directory: Path):
-    """
-    Load sample rows from first CSV file.
-    """
 
     csv_files = list(directory.rglob("*.csv"))
 
@@ -137,11 +94,7 @@ def preview_data(directory: Path):
 
     logger.info("\n%s", df.head())
 
-
-# -----------------------------------------------------------------------------
 # MAIN
-# -----------------------------------------------------------------------------
-
 
 def main():
 
