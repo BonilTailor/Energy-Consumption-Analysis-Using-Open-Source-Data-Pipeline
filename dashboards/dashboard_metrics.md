@@ -1,4 +1,4 @@
-# 📊 Dashboard Documentation
+# Dashboard Documentation
 
 # Energy Consumption Optimization Dashboard
 
@@ -10,7 +10,7 @@ The reporting layer is designed to simulate a production-grade utility analytics
 
 ---
 
-# 🎯 Dashboard Objectives
+# Dashboard Objectives
 
 The dashboard enables stakeholders to:
 
@@ -23,7 +23,7 @@ The dashboard enables stakeholders to:
 
 ---
 
-# 🖥️ Dashboard Pages
+# Dashboard Pages
 
 ## 1. Executive Summary
 
@@ -107,7 +107,7 @@ Isolation Forest
 
 ---
 
-# 📦 BigQuery Tables
+# BigQuery Tables
 
 ## Processed Consumption Table
 
@@ -125,7 +125,7 @@ Isolation Forest
 
 ---
 
-# 📈 Key Dashboard KPIs
+# Key Dashboard KPIs
 
 | KPI | Description |
 |---|---|
@@ -138,7 +138,7 @@ Isolation Forest
 
 ---
 
-# 🎨 Dashboard Design Style
+# Dashboard Design Style
 
 The dashboard follows a modern enterprise analytics design inspired by:
 
@@ -156,7 +156,7 @@ The dashboard follows a modern enterprise analytics design inspired by:
 
 ---
 
-# 🔄 Data Refresh
+# Data Refresh
 
 | Component | Frequency |
 |---|---|
@@ -169,7 +169,7 @@ November 2025
 
 ---
 
-# 🧠 Analytical Insights
+# Analytical Insights
 
 The dashboard supports:
 
@@ -193,7 +193,7 @@ The dashboard supports:
 
 ---
 
-# 🚀 Future Dashboard Enhancements
+# Future Dashboard Enhancements
 
 Planned improvements:
 - Real-time streaming analytics
@@ -205,7 +205,7 @@ Planned improvements:
 
 ---
 
-# 📍 Dashboard Usage
+# Dashboard Usage
 
 Designed for:
 - Utility providers
@@ -216,7 +216,7 @@ Designed for:
 
 ---
 
-# 🛠️ Recommended Dashboard Filters
+# Recommended Dashboard Filters
 
 - Date range
 - Season
@@ -227,7 +227,7 @@ Designed for:
 
 ---
 
-# 📊 Suggested Dashboard Layout
+# Suggested Dashboard Layout
 
 ```text
 -------------------------------------------------
@@ -245,7 +245,7 @@ Designed for:
 
 ---
 
-# 📌 Reporting Layer
+# Reporting Layer
 
 The dashboard consumes:
 - BigQuery analytics tables
@@ -257,7 +257,7 @@ Visualization Layer:
 
 ---
 
-# 📄 Dashboard Purpose
+# Dashboard Purpose
 
 This dashboard demonstrates:
 - End-to-end analytics engineering
