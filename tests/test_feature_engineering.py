@@ -1,7 +1,4 @@
-# ============================================================
 # Unit Tests - feature_engineering.py
-# ============================================================
-
 import pytest
 import pandas as pd
 import numpy as np
@@ -14,9 +11,7 @@ from scripts.feature_engineering import (
     create_consumption_intensity,
 )
 
-# ============================================================
 # Sample Test Data
-# ============================================================
 
 @pytest.fixture
 def sample_dataframe():
@@ -38,10 +33,7 @@ def sample_dataframe():
 
     return pd.DataFrame(data)
 
-
-# ============================================================
 # Test create_time_features
-# ============================================================
 
 def test_create_time_features(sample_dataframe):
 
@@ -60,10 +52,7 @@ def test_create_time_features(sample_dataframe):
     for col in expected_columns:
         assert col in result.columns
 
-
-# ============================================================
 # Test create_peak_hour_feature
-# ============================================================
 
 def test_create_peak_hour_feature(sample_dataframe):
 
@@ -76,10 +65,7 @@ def test_create_peak_hour_feature(sample_dataframe):
 
     assert set(result["is_peak_hour"].unique()).issubset({0, 1})
 
-
-# ============================================================
 # Test create_weekend_feature
-# ============================================================
 
 def test_create_weekend_feature(sample_dataframe):
 
@@ -94,10 +80,7 @@ def test_create_weekend_feature(sample_dataframe):
 
     assert set(result["is_weekend"].unique()).issubset({0, 1})
 
-
-# ============================================================
 # Test create_season_feature
-# ============================================================
 
 def test_create_season_feature(sample_dataframe):
 
@@ -121,10 +104,7 @@ def test_create_season_feature(sample_dataframe):
         valid_seasons
     )
 
-
-# ============================================================
 # Test create_consumption_intensity
-# ============================================================
 
 def test_create_consumption_intensity(
     sample_dataframe
@@ -149,10 +129,7 @@ def test_create_consumption_intensity(
     ).issubset(valid_categories)
 
 
-# ============================================================
 # Edge Case Tests
-# ============================================================
-
 def test_empty_dataframe():
 
     empty_df = pd.DataFrame({
