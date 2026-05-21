@@ -1,18 +1,3 @@
-"""
-load_bigquery.py
-
-Load transformed smart meter energy data into Google BigQuery.
-
-Features:
-- Automatic schema detection
-- Table creation
-- Batch upload support
-- Logging + validation
-
-Author: Your Name
-Project: Energy Consumption Optimization
-"""
-
 import logging
 from pathlib import Path
 
@@ -20,13 +5,11 @@ import pandas as pd
 from google.cloud import bigquery
 from google.oauth2 import service_account
 
-# -----------------------------------------------------------------------------
 # CONFIG
-# -----------------------------------------------------------------------------
 
 PROJECT_ID = "your-gcp-project-id"
-DATASET_ID = "energy_analytics"
-TABLE_ID = "smart_meter_consumption"
+DATASET_ID = "your-dataset-id"
+TABLE_ID = "your-bigquery-table-id"
 
 SERVICE_ACCOUNT_FILE = "credentials/gcp_service_account.json"
 
@@ -34,9 +17,7 @@ PROCESSED_DATA_FILE = (
     Path("data/processed/cleaned_energy_data.csv")
 )
 
-# -----------------------------------------------------------------------------
 # LOGGING
-# -----------------------------------------------------------------------------
 
 logging.basicConfig(
     level=logging.INFO,
@@ -45,15 +26,10 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-# -----------------------------------------------------------------------------
 # BIGQUERY CLIENT
-# -----------------------------------------------------------------------------
 
 
 def create_bigquery_client():
-    """
-    Create authenticated BigQuery client.
-    """
 
     logger.info("Creating BigQuery client...")
 
@@ -70,16 +46,9 @@ def create_bigquery_client():
 
     return client
 
-
-# -----------------------------------------------------------------------------
 # LOAD DATAFRAME
-# -----------------------------------------------------------------------------
-
 
 def load_processed_data() -> pd.DataFrame:
-    """
-    Load transformed dataset.
-    """
 
     logger.info("Loading processed dataset...")
 
@@ -94,16 +63,9 @@ def load_processed_data() -> pd.DataFrame:
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # CREATE DATASET
-# -----------------------------------------------------------------------------
-
 
 def create_dataset_if_not_exists(client):
-    """
-    Create BigQuery dataset if missing.
-    """
 
     dataset_ref = f"{PROJECT_ID}.{DATASET_ID}"
 
@@ -125,19 +87,12 @@ def create_dataset_if_not_exists(client):
             f"Created dataset: {dataset_ref}"
         )
 
-
-# -----------------------------------------------------------------------------
 # LOAD TO BIGQUERY
-# -----------------------------------------------------------------------------
-
 
 def upload_dataframe_to_bigquery(
     client,
     dataframe: pd.DataFrame
 ):
-    """
-    Upload dataframe into BigQuery table.
-    """
 
     table_ref = (
         f"{PROJECT_ID}.{DATASET_ID}.{TABLE_ID}"
@@ -165,16 +120,9 @@ def upload_dataframe_to_bigquery(
         f"Successfully uploaded {len(dataframe):,} rows."
     )
 
-
-# -----------------------------------------------------------------------------
 # VALIDATE LOAD
-# -----------------------------------------------------------------------------
-
 
 def validate_table_row_count(client):
-    """
-    Validate uploaded row count.
-    """
 
     query = f"""
     SELECT COUNT(*) AS total_rows
@@ -190,11 +138,7 @@ def validate_table_row_count(client):
             f"BigQuery row count: {row.total_rows:,}"
         )
 
-
-# -----------------------------------------------------------------------------
 # MAIN
-# -----------------------------------------------------------------------------
-
 
 def main():
 
