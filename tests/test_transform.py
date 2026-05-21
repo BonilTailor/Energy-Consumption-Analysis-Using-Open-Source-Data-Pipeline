@@ -1,6 +1,4 @@
-# ============================================================
 # Unit Tests - transform.py
-# ============================================================
 
 import pytest
 import pandas as pd
@@ -13,10 +11,7 @@ from scripts.transform import (
     convert_datetime_columns,
     filter_invalid_consumption,
 )
-
-# ============================================================
 # Test Data
-# ============================================================
 
 @pytest.fixture
 def sample_dataframe():
@@ -34,10 +29,7 @@ def sample_dataframe():
 
     return pd.DataFrame(data)
 
-
-# ============================================================
 # Test clean_column_names
-# ============================================================
 
 def test_clean_column_names(sample_dataframe):
 
@@ -51,10 +43,7 @@ def test_clean_column_names(sample_dataframe):
 
     assert list(df.columns) == expected_columns
 
-
-# ============================================================
 # Test remove_duplicates
-# ============================================================
 
 def test_remove_duplicates(sample_dataframe):
 
@@ -64,10 +53,7 @@ def test_remove_duplicates(sample_dataframe):
 
     assert len(result) == 3
 
-
-# ============================================================
 # Test handle_missing_values
-# ============================================================
 
 def test_handle_missing_values(sample_dataframe):
 
@@ -77,10 +63,7 @@ def test_handle_missing_values(sample_dataframe):
 
     assert result["energy_consumption"].isnull().sum() == 0
 
-
-# ============================================================
 # Test convert_datetime_columns
-# ============================================================
 
 def test_convert_datetime_columns(sample_dataframe):
 
@@ -95,10 +78,7 @@ def test_convert_datetime_columns(sample_dataframe):
         result["reading_date"]
     )
 
-
-# ============================================================
 # Test filter_invalid_consumption
-# ============================================================
 
 def test_filter_invalid_consumption(sample_dataframe):
 
@@ -111,10 +91,7 @@ def test_filter_invalid_consumption(sample_dataframe):
 
     assert (result["energy_consumption"] < 0).sum() == 0
 
-
-# ============================================================
 # Edge Case Testing
-# ============================================================
 
 def test_empty_dataframe():
 
