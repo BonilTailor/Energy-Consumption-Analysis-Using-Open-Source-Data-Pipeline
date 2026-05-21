@@ -1,29 +1,10 @@
-"""
-feature_engineering.py
-
-Generate advanced analytical features for
-energy consumption optimization.
-
-Features:
-- Time-based features
-- Peak/off-peak indicators
-- Rolling consumption statistics
-- Consumption intensity scoring
-- Seasonal categorization
-
-Author: Your Name
-Project: Energy Consumption Optimization
-"""
-
 import logging
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-# -----------------------------------------------------------------------------
 # CONFIG
-# -----------------------------------------------------------------------------
 
 INPUT_FILE = (
     Path("data/processed/cleaned_energy_data.csv")
@@ -33,9 +14,7 @@ OUTPUT_FILE = (
     Path("data/processed/feature_engineered_data.csv")
 )
 
-# -----------------------------------------------------------------------------
 # LOGGING
-# -----------------------------------------------------------------------------
 
 logging.basicConfig(
     level=logging.INFO,
@@ -44,15 +23,9 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-# -----------------------------------------------------------------------------
 # LOAD DATA
-# -----------------------------------------------------------------------------
-
 
 def load_dataset() -> pd.DataFrame:
-    """
-    Load processed energy dataset.
-    """
 
     logger.info("Loading processed dataset...")
 
@@ -67,16 +40,9 @@ def load_dataset() -> pd.DataFrame:
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # IDENTIFY TARGET COLUMN
-# -----------------------------------------------------------------------------
-
 
 def identify_consumption_column(df):
-    """
-    Identify energy consumption column.
-    """
 
     candidate_columns = [
         col for col in df.columns
@@ -94,16 +60,9 @@ def identify_consumption_column(df):
 
     return candidate_columns[0]
 
-
-# -----------------------------------------------------------------------------
 # TIME FEATURES
-# -----------------------------------------------------------------------------
-
 
 def generate_time_features(df):
-    """
-    Create time-based analytical features.
-    """
 
     logger.info("Generating time features...")
 
@@ -125,16 +84,9 @@ def generate_time_features(df):
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # PEAK PERIOD FEATURES
-# -----------------------------------------------------------------------------
-
 
 def generate_peak_features(df):
-    """
-    Identify peak usage periods.
-    """
 
     logger.info("Generating peak usage features...")
 
@@ -156,16 +108,9 @@ def generate_peak_features(df):
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # SEASONAL FEATURES
-# -----------------------------------------------------------------------------
-
 
 def generate_seasonal_features(df):
-    """
-    Generate seasonal categorization.
-    """
 
     logger.info("Generating seasonal features...")
 
@@ -188,19 +133,12 @@ def generate_seasonal_features(df):
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # CONSUMPTION INTENSITY
-# -----------------------------------------------------------------------------
-
 
 def generate_consumption_intensity(
     df,
     target_column
 ):
-    """
-    Categorize households based on energy usage.
-    """
 
     logger.info(
         "Generating consumption intensity features..."
@@ -233,19 +171,12 @@ def generate_consumption_intensity(
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # ROLLING FEATURES
-# -----------------------------------------------------------------------------
-
 
 def generate_rolling_statistics(
     df,
     target_column
 ):
-    """
-    Generate rolling energy consumption statistics.
-    """
 
     logger.info(
         "Generating rolling statistics..."
@@ -280,16 +211,9 @@ def generate_rolling_statistics(
 
     return df
 
-
-# -----------------------------------------------------------------------------
 # SAVE DATASET
-# -----------------------------------------------------------------------------
-
 
 def save_dataset(df):
-    """
-    Save engineered dataset.
-    """
 
     logger.info(
         f"Saving feature-engineered dataset: {OUTPUT_FILE}"
@@ -302,11 +226,7 @@ def save_dataset(df):
 
     logger.info("Dataset saved successfully.")
 
-
-# -----------------------------------------------------------------------------
 # MAIN
-# -----------------------------------------------------------------------------
-
 
 def main():
 
