@@ -1,6 +1,4 @@
--- ============================================================
 -- Seasonal Energy Consumption Trends
--- ============================================================
 
 CREATE OR REPLACE TABLE
   `energy_analytics.seasonal_trends`
