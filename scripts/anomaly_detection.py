@@ -41,10 +41,7 @@ logger = logging.getLogger(__name__)
 # LOAD DATA
 
 def load_data() -> pd.DataFrame:
-    """
-    Load processed energy dataset.
-    """
-
+  
     logger.info("Loading processed dataset...")
 
     if not INPUT_FILE.exists():
@@ -62,10 +59,7 @@ def load_data() -> pd.DataFrame:
 # IDENTIFY CONSUMPTION COLUMN
 
 def get_consumption_column(df: pd.DataFrame):
-    """
-    Identify target energy consumption column.
-    """
-
+  
     candidate_columns = [
         col for col in df.columns
         if (
@@ -93,10 +87,7 @@ def prepare_features(
     df: pd.DataFrame,
     target_column: str
 ):
-    """
-    Prepare numerical features for anomaly detection.
-    """
-
+   
     logger.info("Preparing anomaly detection features...")
 
     feature_columns = [target_column]
@@ -126,10 +117,7 @@ def prepare_features(
 # TRAIN ISOLATION FOREST
 
 def train_isolation_forest(X_scaled):
-    """
-    Train anomaly detection model.
-    """
-
+   
     logger.info("Training Isolation Forest model...")
 
     model = IsolationForest(
@@ -151,10 +139,7 @@ def detect_anomalies(
     X_scaled,
     dataframe
 ):
-    """
-    Generate anomaly predictions.
-    """
-
+   
     logger.info("Generating anomaly predictions...")
 
     dataframe["anomaly_score"] = model.decision_function(
@@ -188,10 +173,7 @@ def save_outputs(
     dataframe,
     model
 ):
-    """
-    Save anomaly results and model artifacts.
-    """
-
+    
     logger.info("Saving anomaly outputs...")
 
     dataframe.to_csv(
@@ -215,10 +197,7 @@ def create_anomaly_plot(
     dataframe,
     target_column
 ):
-    """
-    Create anomaly visualization.
-    """
-
+   
     logger.info("Creating anomaly plot...")
 
     plt.figure(figsize=(14, 7))
