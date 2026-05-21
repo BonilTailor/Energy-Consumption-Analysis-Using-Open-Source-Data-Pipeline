@@ -1,19 +1,3 @@
-"""
-anomaly_detection.py
-
-Detect abnormal household energy usage patterns
-using Isolation Forest.
-
-Features:
-- Detect unusual consumption spikes
-- Identify potential energy waste
-- Generate anomaly reports
-- Dashboard-ready outputs
-
-Author: Your Name
-Project: Energy Consumption Optimization
-"""
-
 import logging
 from pathlib import Path
 
@@ -23,9 +7,7 @@ import pandas as pd
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import StandardScaler
 
-# -----------------------------------------------------------------------------
 # CONFIG
-# -----------------------------------------------------------------------------
 
 INPUT_FILE = (
     Path("data/processed/cleaned_energy_data.csv")
@@ -47,9 +29,7 @@ PLOT_FILE = (
     OUTPUT_DIR / "anomaly_detection_plot.png"
 )
 
-# -----------------------------------------------------------------------------
 # LOGGING
-# -----------------------------------------------------------------------------
 
 logging.basicConfig(
     level=logging.INFO,
@@ -58,10 +38,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-# -----------------------------------------------------------------------------
 # LOAD DATA
-# -----------------------------------------------------------------------------
-
 
 def load_data() -> pd.DataFrame:
     """
@@ -82,10 +59,7 @@ def load_data() -> pd.DataFrame:
     return df
 
 
-# -----------------------------------------------------------------------------
 # IDENTIFY CONSUMPTION COLUMN
-# -----------------------------------------------------------------------------
-
 
 def get_consumption_column(df: pd.DataFrame):
     """
@@ -113,10 +87,7 @@ def get_consumption_column(df: pd.DataFrame):
     return candidate_columns[0]
 
 
-# -----------------------------------------------------------------------------
 # FEATURE PREPARATION
-# -----------------------------------------------------------------------------
-
 
 def prepare_features(
     df: pd.DataFrame,
@@ -152,11 +123,7 @@ def prepare_features(
 
     return X_scaled, feature_columns
 
-
-# -----------------------------------------------------------------------------
 # TRAIN ISOLATION FOREST
-# -----------------------------------------------------------------------------
-
 
 def train_isolation_forest(X_scaled):
     """
@@ -177,11 +144,7 @@ def train_isolation_forest(X_scaled):
 
     return model
 
-
-# -----------------------------------------------------------------------------
 # GENERATE ANOMALY SCORES
-# -----------------------------------------------------------------------------
-
 
 def detect_anomalies(
     model,
@@ -219,11 +182,7 @@ def detect_anomalies(
 
     return dataframe
 
-
-# -----------------------------------------------------------------------------
 # SAVE OUTPUTS
-# -----------------------------------------------------------------------------
-
 
 def save_outputs(
     dataframe,
@@ -250,11 +209,7 @@ def save_outputs(
         f"Model artifact saved: {MODEL_FILE}"
     )
 
-
-# -----------------------------------------------------------------------------
 # CREATE VISUALIZATION
-# -----------------------------------------------------------------------------
-
 
 def create_anomaly_plot(
     dataframe,
@@ -306,11 +261,7 @@ def create_anomaly_plot(
         f"Anomaly visualization saved: {PLOT_FILE}"
     )
 
-
-# -----------------------------------------------------------------------------
 # MAIN
-# -----------------------------------------------------------------------------
-
 
 def main():
 
