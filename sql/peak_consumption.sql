@@ -1,6 +1,4 @@
--- ============================================================
 -- Peak Consumption Analytics
--- ============================================================
 
 CREATE OR REPLACE TABLE
   `energy_analytics.peak_consumption_analysis`
