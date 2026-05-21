@@ -16,7 +16,7 @@ The platform automates:
 
 ---
 
-# 📌 Project Overview
+# Project Overview
 
 This project simulates a production-grade energy analytics system used by utility providers and smart city initiatives to optimize electricity usage and identify abnormal consumption behavior.
 
@@ -30,7 +30,7 @@ The solution combines:
 
 ---
 
-# 🏗️ Architecture
+# Architecture
 
 ```text
                  ┌────────────────────┐
@@ -76,7 +76,7 @@ The solution combines:
 
 ---
 
-# 📂 Project Structure
+# Project Structure
 
 ```text
 energy-consumption-optimization/
@@ -116,7 +116,7 @@ energy-consumption-optimization/
 
 ---
 
-# 📊 Dataset
+# Dataset
 
 ### London Smart Meter Dataset
 
@@ -136,7 +136,7 @@ https://www.kaggle.com/datasets/jeanmidev/smart-meters-in-london
 
 ---
 
-# ⚙️ Technology Stack
+# Technology Stack
 
 | Category | Technology |
 |---|---|
@@ -153,7 +153,7 @@ https://www.kaggle.com/datasets/jeanmidev/smart-meters-in-london
 
 ---
 
-# 🚀 Key Features
+# Key Features
 
 ## 1. Automated ETL Pipeline
 
@@ -204,7 +204,7 @@ Processed data is loaded into:
 
 ---
 
-# 📈 Dashboard KPIs
+# Dashboard KPIs
 
 The dashboard provides:
 
@@ -219,7 +219,7 @@ The dashboard provides:
 
 ---
 
-# 🧠 Machine Learning Models
+# Machine Learning Models
 
 | Model | Purpose |
 |---|---|
@@ -228,7 +228,7 @@ The dashboard provides:
 
 ---
 
-# 🔄 Airflow Pipeline
+# Airflow Pipeline
 
 Pipeline execution order:
 
@@ -248,7 +248,7 @@ load_bigquery
 
 ---
 
-# 🐳 Docker Setup
+# Docker Setup
 
 ## Build Containers
 
@@ -276,7 +276,7 @@ http://localhost:8501
 
 ---
 
-# 🧪 Run Tests
+# Run Tests
 
 ```bash
 pytest tests/
@@ -284,7 +284,7 @@ pytest tests/
 
 ---
 
-# 📓 Jupyter Notebooks
+# Jupyter Notebooks
 
 | Notebook | Purpose |
 |---|---|
@@ -293,7 +293,7 @@ pytest tests/
 
 ---
 
-# ☁️ BigQuery Integration
+# BigQuery Integration
 
 The pipeline loads analytics-ready data into BigQuery for:
 - Dashboarding
@@ -303,7 +303,7 @@ The pipeline loads analytics-ready data into BigQuery for:
 
 ---
 
-# 📊 Business Value
+# Business Value
 
 This platform helps utility providers:
 - Optimize electricity demand
@@ -314,7 +314,7 @@ This platform helps utility providers:
 
 ---
 
-# 🔮 Future Improvements
+# Future Improvements
 
 Potential enhancements:
 - Real-time streaming ingestion
@@ -327,7 +327,7 @@ Potential enhancements:
 
 ---
 
-# 👨‍💻 Author
+# Author
 
 Data Engineering & Analytics Engineering Portfolio Project
 
@@ -340,6 +340,6 @@ Built using:
 
 ---
 
-# 📜 License
+# License
 
 MIT License
